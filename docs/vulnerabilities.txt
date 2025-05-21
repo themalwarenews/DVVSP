@@ -1,0 +1,122 @@
+Vulnerability: SQL Injection
+File: backend/routes/search.js
+Description: Directly concatenates user input into SQL query.
+Impact: Allows attacker to execute arbitrary SQL commands.
+How to Exploit: Use a search query like ' OR 1=1-- to dump all videos, or '; DROP TABLE videos;-- to attempt destructive actions.
+Educational Note: This demonstrates how unsanitized input can let attackers manipulate backend queries.
+
+Vulnerability: IDOR
+File: backend/routes/videos.js
+Description: No user ownership check on video deletion.
+Impact: Any user can delete other users' videos.
+How to Exploit: Send DELETE requests to /videos/delete/{id} for any video ID, regardless of ownership.
+Educational Note: This shows the risk of missing authorization checks on sensitive actions.
+
+Vulnerability: Weak JWT Implementation
+File: backend/middleware/auth.js
+Description: No proper expiration checks on JWT tokens.
+Impact: Tokens may be used indefinitely if leaked.
+How to Exploit: Steal a token and reuse it at any time; the backend will accept it.
+Educational Note: Demonstrates the importance of token expiration and revocation.
+
+Vulnerability: OAuth CSRF
+File: backend/routes/auth.js
+Description: OAuth implementation lacks CSRF protection.
+Impact: Attackers may forge OAuth requests.
+How to Exploit: Trick a user into visiting a crafted OAuth URL that grants access to the attacker's account.
+Educational Note: Shows why state parameters and CSRF tokens are critical in OAuth flows.
+
+Vulnerability: Admin Endpoint Exposure
+File: backend/routes/admin.js
+Description: Admin endpoints accessible to regular users if direct URL is known.
+Impact: Privilege escalation.
+How to Exploit: Access /admin/users or /admin/videos as a non-admin user to view or modify sensitive data.
+Educational Note: Highlights the need for role-based access control.
+
+Vulnerability: Unsafe Video Import
+File: backend/routes/videos.js
+Description: Imports videos from URLs without validation.
+Impact: SSRF, malicious file import.
+How to Exploit: Submit a URL pointing to internal services or malicious files for import.
+Educational Note: Demonstrates SSRF and the risk of trusting external input for file operations.
+
+Vulnerability: Unsafe Transcoding
+File: backend/controllers/transcode.js
+Description: Uses unsafe command concatenation with user input.
+Impact: Remote code execution.
+How to Exploit: Supply a filename like video.mp4; rm -rf / to execute arbitrary shell commands.
+Educational Note: Shows the danger of shell injection via unsanitized input.
+
+Vulnerability: No Rate Limiting
+File: backend/routes/auth.js
+Description: No rate limiting on authentication endpoints.
+Impact: Brute force attacks.
+How to Exploit: Use automated tools to rapidly try many passwords on /auth/login or /auth/register.
+Educational Note: Demonstrates how lack of rate limiting enables brute force and credential stuffing.
+
+Vulnerability: Insecure CORS
+File: backend/index.js
+Description: CORS policy allows all origins.
+Impact: Cross-origin attacks.
+How to Exploit: Make authenticated requests from a malicious site to the API, leveraging the user's session.
+Educational Note: Shows why CORS restrictions are important for protecting APIs.
+
+Vulnerability: Insecure Logging
+File: backend/utils/logger.js
+Description: Logs sensitive data insecurely.
+Impact: Information disclosure.
+How to Exploit: Sensitive data (passwords, tokens) may appear in logs, which can be accessed by attackers or insiders.
+Educational Note: Highlights the risk of logging sensitive information without redaction.
+
+---
+
+Additional Example Vulnerabilities in This Project:
+
+Vulnerability: Path Traversal
+File: backend/routes/videos.js
+Description: Download endpoint allows path traversal via filename parameter.
+Impact: Attacker can download arbitrary files from the server.
+How to Exploit: Request /videos/download/../../../../etc/passwd to attempt to read system files.
+Educational Note: Shows the risk of using user input in file paths without sanitization.
+
+Vulnerability: XSS (Cross-Site Scripting)
+File: backend/routes/comments.js, backend/routes/search.js
+Description: User input is reflected in HTML responses without sanitization.
+Impact: Attacker can inject scripts that execute in other users' browsers.
+How to Exploit: Post a comment like <script>alert('XSS')</script> or search for <img src=x onerror=alert(1)>.
+Educational Note: Demonstrates the importance of output encoding and input validation.
+
+Vulnerability: Insecure File Upload
+File: backend/routes/videos.js
+Description: No file type or size checks on uploads.
+Impact: Attacker can upload malicious files (e.g., web shells, scripts).
+How to Exploit: Upload a .php or .exe file as a video.
+Educational Note: Shows why file validation is critical for upload endpoints.
+
+Vulnerability: Insecure Password Storage
+File: backend/routes/auth.js, backend/routes/videos.js
+Description: Passwords are stored in plaintext in the database.
+Impact: Database leaks expose all user and video passwords.
+How to Exploit: Dump the users or videos table to retrieve all passwords.
+Educational Note: Demonstrates why password hashing is essential.
+
+Vulnerability: Static Session Token
+File: backend/routes/auth.js
+Description: Returns a static or predictable session token on login.
+Impact: Attacker can impersonate users by guessing or reusing tokens.
+How to Exploit: Use the same token as another user to access their session.
+Educational Note: Shows the risk of weak session management.
+
+Vulnerability: No CSRF Protection
+File: backend/routes/videos.js, backend/routes/users.js
+Description: State-changing actions can be performed via GET or without CSRF tokens.
+Impact: Attacker can trick users into performing actions on their behalf.
+How to Exploit: Create a malicious web page that submits a form to /videos/delete/{id} when visited by a logged-in user.
+Educational Note: Demonstrates the need for CSRF tokens on sensitive actions.
+
+Vulnerability: Information Disclosure
+File: backend/routes/users.js, backend/routes/videos.js
+Description: API responses include sensitive data (passwords, internal file paths).
+Impact: Attacker can gather information for further attacks.
+How to Exploit: View API responses for user or video details to see sensitive fields.
+Educational Note: Shows why APIs should avoid exposing internal or sensitive data.
