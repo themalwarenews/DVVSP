@@ -1,0 +1,285 @@
+/* Dashboard Specific Styles */
+
+/* Sidebar Enhancements */
+.sidebarHeader {
+  font-size: 2rem; /* Slightly larger */
+  margin-bottom: var(--space-xl);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--primary-accent);
+  text-align: center;
+  padding-top: var(--space-sm); /* Adjusted padding */
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-color); /* Separator */
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs); /* Tighter gap for nav items */
+}
+
+/* Main Content Area - uses .main-content from globals.css */
+
+/* Upload Section - uses .card from globals.css */
+.uploadSection {
+  /* Specific overrides if .card is not enough */
+  margin-bottom: var(--space-xxl); /* Keep large margin after upload form */
+}
+
+.uploadForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg); /* Good gap between form elements */
+}
+
+/* .uploadForm .form-group uses .form-group from globals.css */
+
+.uploadForm .input-field {
+  /* Uses .input-field from globals.css */
+  /* Override if specific dashboard styling needed */
+  background-color: var(--input-background); /* Ensure dark theme consistency */
+  border: 1px solid var(--border-color);
+}
+.uploadForm .input-field:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 0 0.2rem var(--primary-accent-transparent); /* Use var from globals */
+}
+
+.uploadFormActions {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: var(--space-md); /* Adjusted gap */
+  align-items: center;
+  margin-top: var(--space-sm);
+}
+.uploadFormActions .checkbox-label {
+  font-size: 1rem; /* Standardized font size */
+  margin-bottom: 0; /* Remove margin from global .checkbox-label if inside actions */
+}
+.uploadFormActions .form-group { /* For password input when private */
+  margin-bottom: 0; /* Remove margin from global .form-group if inside actions */
+}
+
+
+/* Video Grid & Card */
+.exploreSection {
+  /* Uses .card from globals.css */
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+  gap: var(--space-xl); /* Good gap between cards */
+}
+
+.videoCard {
+  background-color: var(--surface-light); /* Slightly lighter than main card bg for depth */
+  border-radius: var(--border-radius-md); /* Standardized radius */
+  box-shadow: var(--box-shadow-md); /* Standard shadow */
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid var(--border-color); /* Subtle border for cards */
+}
+.videoCard:hover {
+  transform: translateY(-5px); /* More pronounced hover effect */
+  box-shadow: var(--box-shadow-lg); /* Deeper shadow on hover */
+}
+
+.videoThumbnail {
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  background-color: var(--background-dark); /* Darker placeholder background */
+  border-radius: var(--border-radius-sm); /* Slightly less rounded than card */
+  margin-bottom: var(--space-md); /* Adjusted margin */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem; /* Larger icon */
+  color: var(--primary-accent);
+  overflow: hidden;
+  position: relative; /* For aspect ratio */
+}
+.videoThumbnail span[role="img"] { /* Target the emoji icon */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.videoThumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the area, might crop */
+}
+
+.videoTitle {
+  font-size: 1.25rem; /* Slightly larger */
+  font-weight: 600; /* Semi-bold */
+  color: var(--text-primary-dark);
+  margin-bottom: var(--space-xs); /* Tighter margin */
+  word-break: break-word;
+  line-height: 1.4; /* Improved line height */
+  /* Truncate long titles */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Show 2 lines */
+  -webkit-box-orient: vertical;
+  min-height: calc(1.25rem * 1.4 * 2); /* Reserve space for 2 lines */
+}
+
+.videoPrivacyStatus {
+  font-size: 0.875rem; /* Standard small text */
+  color: var(--text-secondary-dark);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+}
+
+.videoActions {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on small cards/screens */
+  gap: var(--space-sm); /* Tighter gap for buttons */
+  margin-top: auto; /* Pushes actions to the bottom of the card */
+  padding-top: var(--space-sm); /* Add some space above buttons */
+  /* border-top: 1px solid var(--border-color); /* Optional separator */
+}
+.videoActions .btn {
+  flex-grow: 1; /* Make buttons take equal width if possible */
+  font-size: 0.875rem; /* Smaller font for card buttons */
+  padding: var(--space-xs) var(--space-sm); /* Smaller padding */
+}
+/* Ensure all buttons in actions have similar width */
+.videoActions .btn-primary,
+.videoActions .btn-secondary,
+.videoActions .btn-accent {
+    min-width: 80px; /* Minimum width to prevent squishing */
+}
+
+
+/* Modals - General styling from globals.css, specific overrides here */
+.playerModalContent {
+  /* Uses .modal-content from globals.css */
+  max-width: 900px; /* Wider for video player */
+  background-color: var(--background-dark); /* Darker background for focus on video */
+  border: 1px solid var(--surface-light); /* Contrasting border */
+  padding: var(--space-lg); /* Standard padding */
+}
+
+.playerModalContent video {
+  width: 100%;
+  max-height: calc(80vh - 120px); /* Adjusted max height, less padding calculation */
+  border-radius: var(--border-radius-md);
+  background-color: #000; /* Black background for video area */
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--border-color); /* Subtle border for video element */
+}
+.playerModalContent h4 { /* Video Title in Player */
+  color: var(--text-primary-dark); /* Use primary text color */
+  margin-bottom: var(--space-sm);
+  font-size: 1.75rem; /* Larger title */
+  font-weight: 600;
+}
+.playerModalContent p { /* Video Description in Player */
+  color: var(--text-secondary-dark);
+  font-size: 1rem; /* Standard text size */
+  margin-bottom: var(--space-lg);
+  max-height: 120px;
+  overflow-y: auto;
+  line-height: 1.5;
+  padding-right: var(--space-sm); /* For scrollbar */
+}
+
+
+.formModalContent {
+  /* Uses .modal-content from globals.css */
+  max-width: 550px; /* Standard width for form modals */
+  background-color: var(--surface-dark); /* Consistent modal background */
+  padding: var(--space-xl); /* More padding for forms */
+}
+.formModalContent h4 {
+  font-size: 1.5rem; /* Standardized modal title */
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary-dark);
+  border-bottom: 1px solid var(--border-color); /* Title separator */
+  padding-bottom: var(--space-md);
+}
+.formModalContent .form-group {
+  margin-bottom: var(--space-lg);
+}
+
+.shareLinkInput {
+  width: 100%;
+  background-color: var(--input-background);
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-sm) var(--space-md); /* Standard input padding */
+  margin-bottom: var(--space-md); /* Standard margin */
+  box-sizing: border-box;
+}
+.shareLinkInput:read-only {
+  background-color: var(--background-dark); /* Indicate read-only status */
+}
+
+/* Alert Messages */
+.dashboardAlert {
+  padding: var(--space-md) var(--space-lg);
+  margin-bottom: var(--space-xl);
+  border-radius: var(--border-radius-md);
+  font-weight: 500; /* Semi-bold for emphasis */
+  text-align: center;
+  border-width: 1px;
+  border-style: solid;
+}
+.dashboardAlert p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.alertSuccess {
+  /* Define success colors using CSS variables if not in globals, or use specific values */
+  background-color: rgba(40, 167, 69, 0.15); /* Light success green with more opacity */
+  color: #a3d9a5; /* Lighter green text for dark theme */
+  border-color: rgba(40, 167, 69, 0.5); /* Success green border */
+}
+
+.alertError {
+  /* Define error colors using CSS variables if not in globals, or use specific values */
+  background-color: rgba(220, 53, 69, 0.15); /* Light error red with more opacity */
+  color: #f5c6cb; /* Lighter red text for dark theme */
+  border-color: rgba(220, 53, 69, 0.5); /* Error red border */
+}
+
+/* Uploading indicator */
+.uploadingIndicator {
+  font-style: italic;
+  color: var(--primary-accent);
+  margin-top: var(--space-md); /* More space */
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+
+/* Active Navigation Link in Sidebar */
+.activeNavLink {
+  /* This will override the .nav-list li a.active from globals.css due to module specificity */
+  background-color: var(--primary-accent) !important; /* Primary color for active */
+  color: #ffffff !important; /* White text for active */
+  font-weight: 600; /* Bold font for active link */
+}
+.activeNavLink:hover {
+  background-color: var(--primary-accent-hover) !important;
+  color: #ffffff !important;
+}
+
+/* Ensure other nav links have hover effects consistent with globals.css */
+.sidebarNav .nav-list li a:not(.activeNavLink):hover {
+    background-color: var(--surface-light);
+    color: var(--text-primary-dark);
+}
+/* Responsive Adjustments */  

@@ -1,0 +1,78 @@
+/* Auth.module.css - Styles for Login and Signup pages */
+
+.authPageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-xl);
+  background-color: var(--background-dark); /* Consistent background */
+}
+
+.authFormContainer {
+  width: 100%;
+  max-width: 420px; /* Max width for auth forms */
+  padding: var(--space-xl);
+  background-color: var(--surface-dark);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.authTitle {
+  font-size: 2rem; /* Prominent title */
+  font-weight: 600;
+  color: var(--text-primary-dark);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg); /* Spacing between form elements */
+}
+
+/* .form-group, .input-field, .btn, .checkbox-label from globals.css will be used */
+
+.authSubmitButton {
+  width: 100%; /* Full width button */
+  padding-top: var(--space-md); /* Larger padding */
+  padding-bottom: var(--space-md);
+  font-size: 1.1rem;
+}
+
+.authLink {
+  text-align: center;
+  margin-top: var(--space-lg);
+  color: var(--text-secondary-dark);
+}
+
+.authLink a {
+  color: var(--text-link-dark);
+  font-weight: 500;
+}
+.authLink a:hover {
+  color: var(--primary-accent-hover);
+  text-decoration: underline;
+}
+
+.errorMessage {
+  color: var(--danger-color);
+  background-color: rgba(220, 53, 69, 0.1);
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  margin-bottom: var(--space-lg); /* Space it out if an error occurs */
+  border: 1px solid var(--danger-color);
+}
+.successMessage {
+  color: var(--success-color);
+  background-color: rgba(40, 167, 69, 0.1);
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  margin-bottom: var(--space-lg); /* Space it out if a success message occurs */
+  border: 1px solid var(--success-color);
+}

@@ -1,0 +1,383 @@
+:root {
+  --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  
+  /* Dark Theme Palette */
+  --background-dark: #121212; /* Very dark grey, main background */
+  --surface-dark: #1e1e1e; /* Slightly lighter grey, for cards, modals */
+  --surface-light: #2c2c2c; /* Even lighter, for interactive elements or borders */
+
+  --primary-accent: #007bff; /* Bright blue for primary actions */
+  --primary-accent-hover: #0056b3;
+  --primary-accent-transparent: rgba(0, 123, 255, 0.25); /* For focus rings */
+
+  --secondary-accent: #6c757d; /* Grey for secondary actions */
+  --secondary-accent-hover: #545b62;
+
+  --text-primary-dark: #e0e0e0; /* Light grey for primary text */
+  --text-secondary-dark: #a0a0a0; /* Dimmer grey for secondary text */
+  --text-link-dark: var(--primary-accent);
+
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+
+  --border-color: #3a3a3a; /* For subtle borders */
+  --input-background: #252525;
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  --box-shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --box-shadow-md: 0 4px 10px rgba(0,0,0,0.3);
+  --box-shadow-lg: 0 8px 16px rgba(0,0,0,0.35); /* Added for more depth */
+
+  /* Spacing units */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+}
+
+/* Apply a default dark theme if system preference is not set or supported */
+/* For this project, we will default to dark theme always */
+body {
+  background-color: var(--background-dark);
+  color: var(--text-primary-dark);
+  font-family: var(--font-family-sans);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary-dark);
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--text-link-dark);
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+a:hover {
+  text-decoration: underline;
+  color: var(--primary-accent-hover);
+}
+
+/* Basic container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--space-lg);
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  font-weight: 500;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1rem;
+  border-radius: var(--border-radius-md);
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem var(--primary-accent-transparent);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: var(--primary-accent);
+  border-color: var(--primary-accent);
+}
+.btn-primary:hover {
+  background-color: var(--primary-accent-hover);
+  border-color: var(--primary-accent-hover);
+  color: #fff;
+  text-decoration: none;
+}
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem var(--primary-accent-transparent);
+}
+
+
+.btn-secondary {
+  color: #fff;
+  background-color: var(--secondary-accent);
+  border-color: var(--secondary-accent);
+}
+.btn-secondary:hover {
+  background-color: var(--secondary-accent-hover);
+  border-color: var(--secondary-accent-hover);
+  color: #fff;
+  text-decoration: none;
+}
+.btn-secondary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); /* Secondary accent transparent */
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+  color: #fff;
+  text-decoration: none;
+}
+.btn-danger:focus {
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5); /* Danger color transparent */
+}
+
+/* Accent button for less prominent actions but still important */
+.btn-accent {
+  color: var(--primary-accent);
+  background-color: transparent;
+  border-color: var(--primary-accent);
+}
+.btn-accent:hover {
+  color: #fff;
+  background-color: var(--primary-accent);
+  border-color: var(--primary-accent);
+}
+.btn-accent:focus {
+  box-shadow: 0 0 0 0.2rem var(--primary-accent-transparent);
+}
+
+/* Input Styles */
+.input-field {
+  display: block;
+  width: calc(100% - calc(var(--space-md) * 2)); /* Full width minus padding */
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1rem;
+  font-family: var(--font-family-sans);
+  color: var(--text-primary-dark);
+  background-color: var(--input-background);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  margin-bottom: var(--space-md);
+}
+
+.input-field:focus {
+  border-color: var(--primary-accent);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem var(--primary-accent-transparent);
+}
+
+textarea.input-field {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Checkbox styling */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+  color: var(--text-primary-dark);
+  margin-bottom: var(--space-md);
+}
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  width: 1.2em;
+  height: 1.2em;
+  accent-color: var(--primary-accent); /* Modern way to color checkboxes */
+}
+
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85); /* Even Darker overlay for more focus */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--space-md);
+}
+
+.modal-content {
+  background: var(--surface-dark);
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--box-shadow-lg); /* Enhanced shadow for modals */
+  width: 90%;
+  max-width: 500px; /* Default max-width for modals */
+  color: var(--text-primary-dark);
+  border: 1px solid var(--border-color);
+}
+
+.modal-content h4 {
+  margin-top: 0;
+  margin-bottom: var(--space-lg);
+  font-size: 1.5rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: flex-end;
+  margin-top: var(--space-lg);
+}
+
+/* Form Group for labels and inputs */
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+  color: var(--text-secondary-dark);
+}
+
+/* Utility Classes */
+.text-danger {
+  color: var(--danger-color) !important;
+}
+.text-success {
+  color: var(--success-color) !important;
+}
+.text-center {
+  text-align: center;
+}
+.mt-1 { margin-top: var(--space-sm); }
+.mt-2 { margin-top: var(--space-md); }
+.mt-3 { margin-top: var(--space-lg); }
+.mb-1 { margin-bottom: var(--space-sm); }
+.mb-2 { margin-bottom: var(--space-md); }
+.mb-3 { margin-bottom: var(--space-lg); }
+
+.d-flex { display: flex; }
+.flex-column { flex-direction: column; }
+.align-items-center { align-items: center; }
+.justify-content-center { justify-content: center; }
+.justify-content-between { justify-content: space-between; }
+.gap-1 { gap: var(--space-sm); }
+.gap-2 { gap: var(--space-md); }
+.gap-3 { gap: var(--space-lg); }
+
+/* Specific for VimeoLite layout */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px; /* Fixed width for sidebar */
+  background-color: var(--surface-dark); /* Keep sidebar dark */
+  padding: var(--space-lg);
+  border-right: 1px solid var(--border-color);
+  height: 100vh; /* Full height */
+  position: sticky; /* Sticky sidebar */
+  top: 0;
+  overflow-y: auto; /* Scrollable if content exceeds height */
+  transition: width 0.2s ease-in-out; /* For potential future collapse */
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-xl); /* Increased padding for main content */
+  overflow-y: auto; /* Allow content to scroll */
+  max-height: 100vh; /* Prevent content from pushing sidebar down */
+}
+
+/* Card style for sections like Upload, Video Grid items */
+.card {
+  background-color: var(--surface-dark); /* Use a slightly lighter surface for cards if needed, or keep as is */
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl); /* Increased padding for cards */
+  box-shadow: var(--box-shadow-md); /* Enhanced shadow for cards */
+  margin-bottom: var(--space-xl); /* Consistent margin */
+  border: 1px solid var(--border-color); /* Subtle border */
+}
+
+.card-title {
+  font-size: 1.75rem; /* Larger card titles */
+  color: var(--text-primary-dark);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-color); /* Separator for title */
+  padding-bottom: var(--space-md); /* Space below title before content */
+}
+
+/* Alert/Message styling */
+.alert-message {
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  min-height: 24px; /* From original inline style */
+}
+.alert-message.success {
+  background-color: rgba(var(--success-color), 0.1); /* Light green background */
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
+}
+.alert-message.error {
+  background-color: rgba(var(--danger-color), 0.1); /* Light red background */
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color);
+}
+
+/* Remove default styles from list for navigation */
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav-list li a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--text-secondary-dark);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-xs); /* Tighter spacing between nav items */
+  font-weight: 500;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out; /* Smooth transition */
+}
+.nav-list li a:hover,
+.nav-list li a.active { /* .active class will be handled by Dashboard.module.css for specificity */
+  background-color: var(--surface-light); /* Default hover for non-active */
+  color: var(--text-primary-dark);
+  text-decoration: none;
+}
+.nav-list li a.active { /* Base style for active, can be overridden by module */
+  background-color: var(--primary-accent) !important; /* Ensure active stands out */
+  color: #fff !important;
+}
+
+/* Helper for icons if needed */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  vertical-align: middle;
+  margin-right: var(--space-sm);
+}
